@@ -1,27 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #080C14;
+  --foreground: #C8D6E5;
+  --cyan: #00D4FF;
+  --navy-card: #0F172A;
+  --navy-border: #1A2740;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Mono", monospace;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Syne", sans-serif;
+}
+
+/* Custom scrollbar - Bloomberg style */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #080C14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A2740;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #243352;
+}
+
+/* Glow utility */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.15), 0 0 60px rgba(0, 212, 255, 0.05);
+}
+.glow-red {
+  box-shadow: 0 0 20px rgba(255, 71, 87, 0.15), 0 0 60px rgba(255, 71, 87, 0.05);
+}
+.glow-green {
+  box-shadow: 0 0 20px rgba(46, 213, 115, 0.15), 0 0 60px rgba(46, 213, 115, 0.05);
+}
+.glow-amber {
+  box-shadow: 0 0 20px rgba(255, 177, 66, 0.15), 0 0 60px rgba(255, 177, 66, 0.05);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: #fff;
+}
+
+/* Slide-in panel */
+.detail-panel {
+  animation: slideIn 0.3s ease-out forwards;
+}
+.detail-panel-closing {
+  animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Radial glow on cards */
+.radial-glow-cyan {
+  background: radial-gradient(ellipse at top right, rgba(0, 212, 255, 0.08) 0%, transparent 60%);
+}
+.radial-glow-red {
+  background: radial-gradient(ellipse at top right, rgba(255, 71, 87, 0.08) 0%, transparent 60%);
+}
+.radial-glow-green {
+  background: radial-gradient(ellipse at top right, rgba(46, 213, 115, 0.08) 0%, transparent 60%);
+}
+.radial-glow-amber {
+  background: radial-gradient(ellipse at top right, rgba(255, 177, 66, 0.08) 0%, transparent 60%);
+}
+
+/* Row hover */
+.shipment-row {
+  transition: all 0.15s ease;
+}
+.shipment-row:hover {
+  background: rgba(0, 212, 255, 0.04);
+}
+.shipment-row.selected {
+  background: rgba(0, 212, 255, 0.06);
+  border-left: 2px solid #00D4FF;
 }
